@@ -21,6 +21,7 @@ export class GenresService {
     return this.prisma.genre.findFirst({
       where: { id },
       include: { games: true },
+      rejectOnNotFound: true
     });
   }
 
