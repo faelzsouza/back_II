@@ -6,13 +6,11 @@ import {
   Patch,
   Param,
   Delete,
-  NotFoundException,
   HttpException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { NotFoundError } from 'rxjs';
 
 @Controller('users')
 export class UsersController {

@@ -8,26 +8,26 @@ export class GamesService {
   constructor(private readonly prisma: PrismaService) {}
   create(data: CreateGameDto) {
     //'This action adds a new game';
-    this.prisma.game.create({ data });
+    return this.prisma.game.create({ data });
   }
 
   findAll() {
     //`This action returns all games`;
-    this.prisma.game.findMany({ include: { users: true, genres: true } });
+    return this.prisma.game.findMany();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     //`This action returns a #${id} game`;
-    this.prisma.game.findUnique({ where: { id } });
+    return this.prisma.game.findUnique({ where: { id }, rejectOnNotFound: true });
   }
 
-  update(id: number, data: UpdateGameDto) {
+  async update(id: number, data: UpdateGameDto) {
     //`This action updates a #${id} game`;
-    this.prisma.game.update({ where: { id }, data });
+    return this.prisma.game.update({ where: { id }, data });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     //`This action removes a #${id} game`;
-    this.prisma.game.delete({ where: { id } });
+    return this.prisma.game.delete({ where: { id } });
   }
 }

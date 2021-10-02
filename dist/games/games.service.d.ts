@@ -4,9 +4,9 @@ import { UpdateGameDto } from './dto/update-game.dto';
 export declare class GamesService {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    create(data: CreateGameDto): void;
-    findAll(): void;
-    findOne(id: number): void;
-    update(id: number, data: UpdateGameDto): void;
-    remove(id: number): void;
+    create(data: CreateGameDto): import(".prisma/client").Prisma.Prisma__GameClient<import(".prisma/client").Game>;
+    findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Game[]>;
+    findOne(id: number): Promise<import(".prisma/client").Game>;
+    update(id: number, data: UpdateGameDto): Promise<import(".prisma/client").Game>;
+    remove(id: number): Promise<import(".prisma/client").Game>;
 }

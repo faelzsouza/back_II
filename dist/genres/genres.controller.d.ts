@@ -4,9 +4,13 @@ import { UpdateGenreDto } from './dto/update-genre.dto';
 export declare class GenresController {
     private readonly genresService;
     constructor(genresService: GenresService);
-    create(createGenreDto: CreateGenreDto): void;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateGenreDto: UpdateGenreDto): string;
-    remove(id: string): string;
+    create(createGenreDto: CreateGenreDto): import(".prisma/client").Prisma.Prisma__GenreClient<import(".prisma/client").Genre>;
+    findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").Genre & {
+        games: import(".prisma/client").GenresOnGames[];
+    })[]>;
+    findOne(id: string): import(".prisma/client").Prisma.Prisma__GenreClient<import(".prisma/client").Genre & {
+        games: import(".prisma/client").GenresOnGames[];
+    }>;
+    update(id: string, updateGenreDto: UpdateGenreDto): import(".prisma/client").Prisma.Prisma__GenreClient<import(".prisma/client").Genre>;
+    remove(id: string): import(".prisma/client").Prisma.Prisma__GenreClient<import(".prisma/client").Genre>;
 }

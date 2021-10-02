@@ -17,22 +17,22 @@ let ProfilesService = class ProfilesService {
         this.prisma = prisma;
     }
     create(data) {
-        this.prisma.profile.create({ data });
+        return this.prisma.profile.create({ data });
     }
     findAll() {
-        this.prisma.profile.findMany({ include: { favGames: true } });
+        return this.prisma.profile.findMany({ include: { favGames: true } });
     }
     findOne(id) {
-        this.prisma.profile.findUnique({
+        return this.prisma.profile.findUnique({
             where: { id },
             include: { favGames: true },
         });
     }
     update(id, data) {
-        this.prisma.profile.update({ where: { id }, data });
+        return this.prisma.profile.update({ where: { id }, data });
     }
     remove(id) {
-        this.prisma.profile.delete({ where: { id } });
+        return this.prisma.profile.delete({ where: { id } });
     }
 };
 ProfilesService = __decorate([

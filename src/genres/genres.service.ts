@@ -5,25 +5,32 @@ import { UpdateGenreDto } from './dto/update-genre.dto';
 
 @Injectable()
 export class GenresService {
-  constructor(private readonly prisma: PrismaService){}
+  constructor(private readonly prisma: PrismaService) {}
   create(data: CreateGenreDto) {
     //'This action adds a new genre';
-    this.prisma.genre.create({data})
+    return this.prisma.genre.create({ data });
   }
 
   findAll() {
-    return `This action returns all genres`;
+    //`This action returns all genres`;
+    return this.prisma.genre.findMany({ include: { games: true } });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} genre`;
+    //`This action returns a #${id} genre`;
+    return this.prisma.genre.findFirst({
+      where: { id },
+      include: { games: true },
+    });
   }
 
-  update(id: number, updateGenreDto: UpdateGenreDto) {
-    return `This action updates a #${id} genre`;
+  update(id: number, data: UpdateGenreDto) {
+    //`This action updates a #${id} genre`;
+    return this.prisma.genre.update({ where: { id }, data });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} genre`;
+    //`This action removes a #${id} genre`;
+    return this.prisma.genre.delete({ where: { id } });
   }
 }

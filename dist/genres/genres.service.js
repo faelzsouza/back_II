@@ -17,19 +17,22 @@ let GenresService = class GenresService {
         this.prisma = prisma;
     }
     create(data) {
-        this.prisma.genre.create({ data });
+        return this.prisma.genre.create({ data });
     }
     findAll() {
-        return `This action returns all genres`;
+        return this.prisma.genre.findMany({ include: { games: true } });
     }
     findOne(id) {
-        return `This action returns a #${id} genre`;
+        return this.prisma.genre.findFirst({
+            where: { id },
+            include: { games: true },
+        });
     }
-    update(id, updateGenreDto) {
-        return `This action updates a #${id} genre`;
+    update(id, data) {
+        return this.prisma.genre.update({ where: { id }, data });
     }
     remove(id) {
-        return `This action removes a #${id} genre`;
+        return this.prisma.genre.delete({ where: { id } });
     }
 };
 GenresService = __decorate([

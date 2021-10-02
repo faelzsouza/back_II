@@ -4,9 +4,13 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 export declare class ProfilesController {
     private readonly profilesService;
     constructor(profilesService: ProfilesService);
-    create(createProfileDto: CreateProfileDto): void;
-    findAll(): void;
-    findOne(id: string): void;
-    update(id: string, updateProfileDto: UpdateProfileDto): void;
-    remove(id: string): void;
+    create(createProfileDto: CreateProfileDto): import(".prisma/client").Prisma.Prisma__ProfileClient<import(".prisma/client").Profile>;
+    findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").Profile & {
+        favGames: import(".prisma/client").GamesOnProfiles[];
+    })[]>;
+    findOne(id: string): import(".prisma/client").Prisma.Prisma__ProfileClient<import(".prisma/client").Profile & {
+        favGames: import(".prisma/client").GamesOnProfiles[];
+    }>;
+    update(id: string, updateProfileDto: UpdateProfileDto): import(".prisma/client").Prisma.Prisma__ProfileClient<import(".prisma/client").Profile>;
+    remove(id: string): import(".prisma/client").Prisma.Prisma__ProfileClient<import(".prisma/client").Profile>;
 }

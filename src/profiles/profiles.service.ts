@@ -8,17 +8,17 @@ export class ProfilesService {
   constructor(private readonly prisma: PrismaService) {}
   create(data: CreateProfileDto) {
     //'This action adds a new profile';
-    this.prisma.profile.create({ data });
+    return this.prisma.profile.create({ data });
   }
 
   findAll() {
     //`This action returns all profiles`;
-    this.prisma.profile.findMany({ include: { favGames: true } });
+    return this.prisma.profile.findMany({ include: { favGames: true } });
   }
 
   findOne(id: number) {
     //`This action returns a #${id} profile`;
-    this.prisma.profile.findUnique({
+    return this.prisma.profile.findUnique({
       where: { id },
       include: { favGames: true },
     });
@@ -26,11 +26,11 @@ export class ProfilesService {
 
   update(id: number, data: UpdateProfileDto) {
     //`This action updates a #${id} profile`;
-    this.prisma.profile.update({ where: { id }, data });
+    return this.prisma.profile.update({ where: { id }, data });
   }
 
   remove(id: number) {
     //`This action removes a #${id} profile`;
-    this.prisma.profile.delete({ where: { id } });
+    return this.prisma.profile.delete({ where: { id } });
   }
 }

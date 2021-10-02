@@ -17,19 +17,19 @@ let GamesService = class GamesService {
         this.prisma = prisma;
     }
     create(data) {
-        this.prisma.game.create({ data });
+        return this.prisma.game.create({ data });
     }
     findAll() {
-        this.prisma.game.findMany({ include: { users: true, genres: true } });
+        return this.prisma.game.findMany();
     }
-    findOne(id) {
-        this.prisma.game.findUnique({ where: { id } });
+    async findOne(id) {
+        return this.prisma.game.findUnique({ where: { id }, rejectOnNotFound: true });
     }
-    update(id, data) {
-        this.prisma.game.update({ where: { id }, data });
+    async update(id, data) {
+        return this.prisma.game.update({ where: { id }, data });
     }
-    remove(id) {
-        this.prisma.game.delete({ where: { id } });
+    async remove(id) {
+        return this.prisma.game.delete({ where: { id } });
     }
 };
 GamesService = __decorate([
