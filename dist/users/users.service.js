@@ -22,16 +22,17 @@ let UsersService = class UsersService {
     findAll() {
         return this.prisma.user.findMany({ include: { profiles: true } });
     }
-    findOne(id) {
+    async findOne(id) {
         return this.prisma.user.findUnique({
             where: { id },
             include: { profiles: true },
+            rejectOnNotFound: true,
         });
     }
-    update(id, data) {
+    async update(id, data) {
         return this.prisma.user.update({ where: { id }, data });
     }
-    remove(id) {
+    async remove(id) {
         return this.prisma.user.delete({ where: { id } });
     }
 };
