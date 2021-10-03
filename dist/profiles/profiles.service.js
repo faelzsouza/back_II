@@ -22,16 +22,16 @@ let ProfilesService = class ProfilesService {
     findAll() {
         return this.prisma.profile.findMany({ include: { favGames: true } });
     }
-    findOne(id) {
+    async findOne(id) {
         return this.prisma.profile.findUnique({
             where: { id },
             include: { favGames: true },
         });
     }
-    update(id, data) {
+    async update(id, data) {
         return this.prisma.profile.update({ where: { id }, data });
     }
-    remove(id) {
+    async remove(id) {
         return this.prisma.profile.delete({ where: { id } });
     }
 };

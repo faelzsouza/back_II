@@ -13,24 +13,26 @@ export class GenresService {
 
   findAll() {
     //`This action returns all genres`;
-    return this.prisma.genre.findMany({ include: { games: true } });
+    return this.prisma.genre.findMany({
+      include: { games: { include: { game: true } } },
+    });
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     //`This action returns a #${id} genre`;
     return this.prisma.genre.findFirst({
       where: { id },
       include: { games: true },
-      rejectOnNotFound: true
+      rejectOnNotFound: true,
     });
   }
 
-  update(id: number, data: UpdateGenreDto) {
+  async update(id: number, data: UpdateGenreDto) {
     //`This action updates a #${id} genre`;
     return this.prisma.genre.update({ where: { id }, data });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     //`This action removes a #${id} genre`;
     return this.prisma.genre.delete({ where: { id } });
   }

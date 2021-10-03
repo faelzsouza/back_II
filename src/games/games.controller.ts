@@ -16,7 +16,7 @@ import { UpdateGameDto } from './dto/update-game.dto';
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
-  private readonly notFound = (id) => {
+  private readonly notFound = (id: string) => {
     throw new HttpException(`The game with #${id} id was not found.`, 404);
   };
 

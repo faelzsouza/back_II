@@ -13,12 +13,20 @@ export class GamesService {
 
   findAll() {
     //`This action returns all games`;
-    return this.prisma.game.findMany();
+    return this.prisma.game.findMany({
+      include: {
+        favorites: { include: { profile: true } },
+        genres: { include: { genre: true } },
+      },
+    });
   }
 
   async findOne(id: number) {
     //`This action returns a #${id} game`;
-    return this.prisma.game.findUnique({ where: { id }, rejectOnNotFound: true });
+    return this.prisma.game.findUnique({
+      where: { id },
+      rejectOnNotFound: true,
+    });
   }
 
   async update(id: number, data: UpdateGameDto) {

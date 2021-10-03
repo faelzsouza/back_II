@@ -20,19 +20,21 @@ let GenresService = class GenresService {
         return this.prisma.genre.create({ data });
     }
     findAll() {
-        return this.prisma.genre.findMany({ include: { games: true } });
+        return this.prisma.genre.findMany({
+            include: { games: { include: { game: true } } },
+        });
     }
-    findOne(id) {
+    async findOne(id) {
         return this.prisma.genre.findFirst({
             where: { id },
             include: { games: true },
-            rejectOnNotFound: true
+            rejectOnNotFound: true,
         });
     }
-    update(id, data) {
+    async update(id, data) {
         return this.prisma.genre.update({ where: { id }, data });
     }
-    remove(id) {
+    async remove(id) {
         return this.prisma.genre.delete({ where: { id } });
     }
 };

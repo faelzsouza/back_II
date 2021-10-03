@@ -20,10 +20,18 @@ let GamesService = class GamesService {
         return this.prisma.game.create({ data });
     }
     findAll() {
-        return this.prisma.game.findMany();
+        return this.prisma.game.findMany({
+            include: {
+                favorites: { include: { profile: true } },
+                genres: { include: { genre: true } },
+            },
+        });
     }
     async findOne(id) {
-        return this.prisma.game.findUnique({ where: { id }, rejectOnNotFound: true });
+        return this.prisma.game.findUnique({
+            where: { id },
+            rejectOnNotFound: true,
+        });
     }
     async update(id, data) {
         return this.prisma.game.update({ where: { id }, data });
