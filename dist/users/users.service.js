@@ -16,7 +16,10 @@ let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(data) {
+    create(dto) {
+        const data = Object.assign(Object.assign({}, dto), { profiles: dto.profiles ? {
+                create: dto.profiles
+            } : {} });
         return this.prisma.user.create({ data });
     }
     findAll() {
@@ -29,7 +32,10 @@ let UsersService = class UsersService {
             rejectOnNotFound: true,
         });
     }
-    async update(id, data) {
+    async update(id, dto) {
+        const data = Object.assign(Object.assign({}, dto), { profiles: dto.profiles ? {
+                create: dto.profiles
+            } : {} });
         return this.prisma.user.update({ where: { id }, data });
     }
     async remove(id) {

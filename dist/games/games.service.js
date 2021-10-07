@@ -16,7 +16,22 @@ let GamesService = class GamesService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(data) {
+    create(dto) {
+        const data = Object.assign(Object.assign({}, dto), { genres: {
+                create: dto.genres
+                    ? [
+                        {
+                            genre: {
+                                connectOrCreate: { where: dto.genres, create: dto.genres },
+                            },
+                        },
+                    ]
+                    : [],
+            }, favorites: dto.favorites
+                ? {
+                    create: dto.favorites,
+                }
+                : {} });
         return this.prisma.game.create({ data });
     }
     findAll() {
@@ -24,7 +39,7 @@ let GamesService = class GamesService {
             include: {
                 favorites: { include: { profile: true } },
                 genres: { include: { genre: true } },
-            },
+            }
         });
     }
     async findOne(id) {
@@ -33,7 +48,22 @@ let GamesService = class GamesService {
             rejectOnNotFound: true,
         });
     }
-    async update(id, data) {
+    async update(id, dto) {
+        const data = Object.assign(Object.assign({}, dto), { genres: {
+                create: dto.genres
+                    ? [
+                        {
+                            genre: {
+                                connectOrCreate: { where: dto.genres, create: dto.genres },
+                            },
+                        },
+                    ]
+                    : [],
+            }, favorites: dto.favorites
+                ? {
+                    create: dto.favorites,
+                }
+                : {} });
         return this.prisma.game.update({ where: { id }, data });
     }
     async remove(id) {

@@ -35,8 +35,7 @@ let UsersController = class UsersController {
     }
     update(id, updateUserDto) {
         return this.usersService
-            .update(+id, updateUserDto)
-            .catch((err) => this.notFound(id));
+            .update(+id, updateUserDto);
     }
     remove(id) {
         return this.usersService.remove(+id).catch((err) => this.notFound(id));

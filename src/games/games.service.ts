@@ -2,12 +2,32 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { Prisma } from '.prisma/client';
 
 @Injectable()
 export class GamesService {
   constructor(private readonly prisma: PrismaService) {}
-  create(data: CreateGameDto) {
-    //'This action adds a new game';
+  create(dto: CreateGameDto) {
+    const data: Prisma.GameCreateInput = {
+      ...dto,
+      genres: {
+        create: dto.genres
+          ? [
+              {
+                genre: {
+                  connectOrCreate: { where: dto.genres, create: dto.genres },
+                },
+              },
+            ]
+          : [],
+      },
+      favorites: dto.favorites
+      ? {
+          create: dto.favorites,
+        }
+      : {},
+    };
+    //'This action adds a new game'; create: dto.images?.length ? dto.images : [],
     return this.prisma.game.create({ data });
   }
 
@@ -17,7 +37,7 @@ export class GamesService {
       include: {
         favorites: { include: { profile: true } },
         genres: { include: { genre: true } },
-      },
+      }
     });
   }
 
@@ -29,7 +49,26 @@ export class GamesService {
     });
   }
 
-  async update(id: number, data: UpdateGameDto) {
+  async update(id: number, dto: UpdateGameDto) {
+    const data: Prisma.GameUpdateInput = {
+      ...dto,
+      genres: {
+        create: dto.genres
+          ? [
+              {
+                genre: {
+                  connectOrCreate: { where: dto.genres, create: dto.genres },
+                },
+              },
+            ]
+          : [],
+      },
+      favorites: dto.favorites
+        ? {
+            create: dto.favorites,
+          }
+        : {},
+    };
     //`This action updates a #${id} game`;
     return this.prisma.game.update({ where: { id }, data });
   }

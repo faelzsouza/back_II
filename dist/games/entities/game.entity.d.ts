@@ -1,6 +1,6 @@
-import { Prisma } from '.prisma/client';
-export declare class Game implements Prisma.GameUncheckedCreateInput {
-    id?: number;
+import { Genre } from 'src/genres/entities/genre.entity';
+import { ConnectProfileDto } from 'src/profiles/dto/connect-profile.dto';
+export declare class Game {
     title: string;
     cover: string;
     description: string;
@@ -8,6 +8,6 @@ export declare class Game implements Prisma.GameUncheckedCreateInput {
     imdb: number;
     trailer?: string;
     gameplay?: string;
-    users?: Prisma.GamesOnProfilesUncheckedCreateNestedManyWithoutGameInput;
-    genres?: Prisma.GenresOnGamesUncheckedCreateNestedManyWithoutGameInput;
+    genres?: Genre;
+    favorites?: ConnectProfileDto[];
 }

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateGenreDto = void 0;
 const class_validator_1 = require("class-validator");
 const genre_entity_1 = require("../entities/genre.entity");
-const client_1 = require(".prisma/client");
 class CreateGenreDto extends genre_entity_1.Genre {
 }
 __decorate([
@@ -20,9 +19,5 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateGenreDto.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
-], CreateGenreDto.prototype, "games", void 0);
 exports.CreateGenreDto = CreateGenreDto;
 //# sourceMappingURL=create-genre.dto.js.map

@@ -1,5 +1,7 @@
-import { Prisma } from '.prisma/client'
-import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator'
+import { Type } from 'class-transformer'
+import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { CreateGenreDto } from 'src/genres/dto/create-genre.dto'
+import { ConnectProfileDto } from 'src/profiles/dto/connect-profile.dto'
 import { Game } from '../entities/game.entity'
 export class CreateGameDto extends Game {
     @IsString()
@@ -23,8 +25,12 @@ export class CreateGameDto extends Game {
     @IsString()
     @IsOptional()
     gameplay?: string | null
+    @ValidateNested({each: true})
+    @Type(() => CreateGenreDto)
     @IsOptional()
-    users?: Prisma.GamesOnProfilesUncheckedCreateNestedManyWithoutGameInput
+    genres?: CreateGenreDto
+    @ValidateNested({each: true})
+    @Type(() => ConnectProfileDto)
     @IsOptional()
-    genres?: Prisma.GenresOnGamesUncheckedCreateNestedManyWithoutGameInput
+    favorites?: ConnectProfileDto[]
 }

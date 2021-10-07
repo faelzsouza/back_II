@@ -39,7 +39,6 @@ export class UsersController {
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService
       .update(+id, updateUserDto)
-      .catch((err) => this.notFound(id));
   }
 
   @Delete(':id')
