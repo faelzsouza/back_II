@@ -7,6 +7,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { IsCpf } from 'src/decorators/cpf.decorator';
 import { CreateProfileDto } from 'src/profiles/dto/create-profile.dto';
 import { User } from '../entities/user.entity';
 
@@ -25,6 +26,7 @@ export class CreateUserDto extends User {
   password: string;
   @IsString({ message: 'The CPF must be string type.' })
   @IsNotEmpty({ message: 'The CPF must not be empty.' })
+  @IsCpf()
   cpf: string;
   @ValidateNested({ each: true })
   @Type(() => CreateProfileDto)
