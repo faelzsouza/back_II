@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   HttpException,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { GenresService } from './genres.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
@@ -43,7 +45,8 @@ export class GenresController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
-    return this.genresService.remove(+id).catch((err) => this.notFound(id));
+    this.genresService.remove(+id).catch((err) => this.notFound(id));
   }
 }

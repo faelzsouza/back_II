@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   HttpException,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { ProfilesService } from './profiles.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -43,7 +45,8 @@ export class ProfilesController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
-    return this.profilesService.remove(+id).catch((err) => this.notFound(id));
+    this.profilesService.remove(+id).catch((err) => this.notFound(id));
   }
 }
