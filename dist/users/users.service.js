@@ -42,7 +42,7 @@ let UsersService = class UsersService {
         });
     }
     async update(id, dto) {
-        const data = Object.assign(Object.assign({}, dto), { profiles: dto.profiles ? {
+        const data = Object.assign(Object.assign({}, dto), { password: await bcrypt.hash(dto.password, 10), profiles: dto.profiles ? {
                 create: dto.profiles
             } : {} });
         return this.prisma.user.update({ where: { id }, data });

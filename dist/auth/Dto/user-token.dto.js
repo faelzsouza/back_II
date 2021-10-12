@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userToken = void 0;
-class userToken {
+exports.UserToken = void 0;
+class UserToken {
 }
-exports.userToken = userToken;
+exports.UserToken = UserToken;
 ;
 //# sourceMappingURL=user-token.dto.js.map

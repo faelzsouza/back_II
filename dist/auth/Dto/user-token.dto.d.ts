@@ -1,3 +1,3 @@
-export declare class userToken {
-    acessToken: string;
+export declare class UserToken {
+    accessToken: string;
 }

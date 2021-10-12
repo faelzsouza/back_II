@@ -3,5 +3,5 @@ import { AuthService } from './auth.service';
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
-    login(dto: LoginDto): Promise<void>;
+    login(dto: LoginDto): Promise<import("./dto/user-token.dto").UserToken>;
 }

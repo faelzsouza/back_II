@@ -15,6 +15,7 @@ const jwt_1 = require("@nestjs/jwt");
 const user_entity_1 = require("../users/entities/user.entity");
 const users_service_1 = require("../users/users.service");
 const bcrypt = require("bcrypt");
+const unauthorized_error_1 = require("../errors/unauthorized.error");
 let AuthService = class AuthService {
     constructor(userService, jwtService) {
         this.userService = userService;
@@ -22,6 +23,13 @@ let AuthService = class AuthService {
     }
     async login(dto) {
         const user = await this.validateUser(dto.email, dto.password);
+        const payload = {
+            sub: user.id,
+            username: user.email,
+        };
+        return {
+            accessToken: this.jwtService.sign(payload)
+        };
     }
     async validateUser(email, password) {
         const user = await this.userService.findByEmail(email);
@@ -31,7 +39,7 @@ let AuthService = class AuthService {
                 return Object.assign(Object.assign({}, user), { password: undefined });
             }
         }
-        throw new Error('Email address and/or password provided are invalid.');
+        throw new unauthorized_error_1.default('Email address and/or password provided are invalid.');
     }
 };
 AuthService = __decorate([
