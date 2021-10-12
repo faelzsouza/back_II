@@ -22,10 +22,10 @@ export class GamesService {
           : [],
       },
       favorites: dto.favorites
-      ? {
-          create: dto.favorites,
-        }
-      : {},
+        ? {
+            create: dto.favorites,
+          }
+        : {},
     };
     //'This action adds a new game'; create: dto.images?.length ? dto.images : [],
     return this.prisma.game.create({ data });
@@ -37,7 +37,7 @@ export class GamesService {
       include: {
         favorites: { include: { profile: true } },
         genres: { include: { genre: true } },
-      }
+      },
     });
   }
 

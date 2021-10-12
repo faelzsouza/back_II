@@ -34,7 +34,7 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id).catch((err) => this.notFound(id));
+    return this.usersService.findById(+id).catch((err) => this.notFound(id));
   }
 
   @Patch(':id')
