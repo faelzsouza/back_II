@@ -13,5 +13,5 @@ export declare class ProfilesController {
         favGames: import(".prisma/client").GamesOnProfiles[];
     }>;
     update(id: string, updateProfileDto: UpdateProfileDto): Promise<import(".prisma/client").Profile>;
-    remove(id: string): Promise<import(".prisma/client").Profile>;
+    remove(id: string): void;
 }

@@ -39,7 +39,7 @@ let ProfilesController = class ProfilesController {
             .catch((err) => this.notFound(id));
     }
     remove(id) {
-        return this.profilesService.remove(+id).catch((err) => this.notFound(id));
+        this.profilesService.remove(+id).catch((err) => this.notFound(id));
     }
 };
 __decorate([
@@ -72,6 +72,7 @@ __decorate([
 ], ProfilesController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

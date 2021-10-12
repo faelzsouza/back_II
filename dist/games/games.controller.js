@@ -37,7 +37,7 @@ let GamesController = class GamesController {
         return this.gamesService.update(+id, updateGameDto);
     }
     remove(id) {
-        return this.gamesService.remove(+id).catch(error => this.notFound(id));
+        this.gamesService.remove(+id).catch(error => this.notFound(id));
     }
 };
 __decorate([
@@ -70,6 +70,7 @@ __decorate([
 ], GamesController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

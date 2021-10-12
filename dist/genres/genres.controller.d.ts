@@ -15,5 +15,5 @@ export declare class GenresController {
         games: import(".prisma/client").GenresOnGames[];
     }>;
     update(id: string, updateGenreDto: UpdateGenreDto): Promise<import(".prisma/client").Genre>;
-    remove(id: string): Promise<import(".prisma/client").Genre>;
+    remove(id: string): void;
 }
