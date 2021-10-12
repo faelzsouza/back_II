@@ -7,11 +7,11 @@ export declare class GamesService {
     constructor(prisma: PrismaService);
     create(dto: CreateGameDto): Prisma.Prisma__GameClient<import(".prisma/client").Game>;
     findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").Game & {
-        genres: (import(".prisma/client").GenresOnGames & {
-            genre: import(".prisma/client").Genre;
-        })[];
         favorites: (import(".prisma/client").GamesOnProfiles & {
             profile: import(".prisma/client").Profile;
+        })[];
+        genres: (import(".prisma/client").GenresOnGames & {
+            genre: import(".prisma/client").Genre;
         })[];
     })[]>;
     findOne(id: number): Promise<import(".prisma/client").Game>;

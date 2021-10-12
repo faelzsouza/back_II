@@ -39,7 +39,7 @@ let GamesService = class GamesService {
             include: {
                 favorites: { include: { profile: true } },
                 genres: { include: { genre: true } },
-            }
+            },
         });
     }
     async findOne(id) {
@@ -51,11 +51,13 @@ let GamesService = class GamesService {
     async update(id, dto) {
         const data = Object.assign(Object.assign({}, dto), { genres: {
                 create: dto.genres
-                    ? [{
+                    ? [
+                        {
                             genre: {
                                 connectOrCreate: { where: dto.genres, create: dto.genres },
                             },
-                        }]
+                        },
+                    ]
                     : [],
             }, favorites: dto.favorites
                 ? {
