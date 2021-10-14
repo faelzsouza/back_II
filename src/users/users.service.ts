@@ -52,6 +52,7 @@ export class UsersService {
   async update(id: number, dto: UpdateUserDto) {
     const data: Prisma.UserUpdateInput = {
       ...dto,
+      password: await bcrypt.hash(dto.password, 10),
       profiles: dto.profiles ? {
         create: dto.profiles
       } : {}
