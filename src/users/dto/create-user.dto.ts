@@ -5,6 +5,8 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  Length,
+  Matches,
   ValidateNested,
 } from 'class-validator';
 import { IsCpf } from 'src/decorators/cpf.decorator';
@@ -21,6 +23,10 @@ export class CreateUserDto extends User {
   @IsNotEmpty({ message: 'The e-mail must not be empty.' })
   @IsEmail()
   email: string;
+  @Length(4, 20)
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'password too weak',
+  })
   @IsString({ message: 'The password must be string type.' })
   @IsNotEmpty({ message: 'The password must not be empty.' })
   password: string;
