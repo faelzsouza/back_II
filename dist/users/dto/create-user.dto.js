@@ -34,6 +34,9 @@ __decorate([
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.Length)(4, 20),
+    (0, class_validator_1.Matches)(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+        message: 'password too weak',
+    }),
     (0, class_validator_1.IsString)({ message: 'The password must be string type.' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'The password must not be empty.' }),
     __metadata("design:type", String)

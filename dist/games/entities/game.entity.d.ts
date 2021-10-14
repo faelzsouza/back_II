@@ -9,5 +9,5 @@ export declare class Game {
     trailer?: string;
     gameplay?: string;
     genres?: Genre;
-    favorites?: ConnectProfileDto[];
+    favorites?: ConnectProfileDto;
 }

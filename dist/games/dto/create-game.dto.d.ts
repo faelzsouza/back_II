@@ -10,5 +10,5 @@ export declare class CreateGameDto extends Game {
     trailer?: string | null;
     gameplay?: string | null;
     genres?: CreateGenreDto;
-    favorites?: ConnectProfileDto[];
+    favorites?: ConnectProfileDto;
 }

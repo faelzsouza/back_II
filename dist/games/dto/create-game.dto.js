@@ -62,7 +62,7 @@ __decorate([
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => connect_profile_dto_1.ConnectProfileDto),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
+    __metadata("design:type", connect_profile_dto_1.ConnectProfileDto)
 ], CreateGameDto.prototype, "favorites", void 0);
 exports.CreateGameDto = CreateGameDto;
 //# sourceMappingURL=create-game.dto.js.map

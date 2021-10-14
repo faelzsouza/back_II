@@ -27,11 +27,7 @@ let GamesService = class GamesService {
                         },
                     ]
                     : [],
-            }, favorites: dto.favorites
-                ? {
-                    create: dto.favorites,
-                }
-                : {} });
+            }, favorites: {} });
         return this.prisma.game.create({ data });
     }
     findAll() {
