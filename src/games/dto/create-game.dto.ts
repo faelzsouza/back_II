@@ -32,5 +32,5 @@ export class CreateGameDto extends Game {
     @ValidateNested({each: true})
     @Type(() => ConnectProfileDto)
     @IsOptional()
-    favorites?: ConnectProfileDto[]
+    favorites?: ConnectProfileDto
 }
