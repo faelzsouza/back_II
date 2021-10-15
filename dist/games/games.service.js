@@ -19,13 +19,11 @@ let GamesService = class GamesService {
     create(dto) {
         const data = Object.assign(Object.assign({}, dto), { genres: {
                 create: dto.genres
-                    ? [
-                        {
-                            genre: {
-                                connectOrCreate: { where: dto.genres, create: dto.genres },
-                            },
+                    ? dto.genres.map((genre) => ({
+                        genre: {
+                            connect: { name: genre },
                         },
-                    ]
+                    }))
                     : [],
             }, favorites: {} });
         return this.prisma.game.create({ data });
@@ -47,17 +45,17 @@ let GamesService = class GamesService {
     async update(id, dto) {
         const data = Object.assign(Object.assign({}, dto), { genres: {
                 create: dto.genres
-                    ? [
-                        {
-                            genre: {
-                                connectOrCreate: { where: dto.genres, create: dto.genres },
-                            },
+                    ? dto.genres.map((genre) => ({
+                        genre: {
+                            connect: { name: genre },
                         },
-                    ]
+                    }))
                     : [],
             }, favorites: dto.favorites
                 ? {
-                    create: dto.favorites,
+                    create: dto.favorites.map((fav) => ({
+                        profileId: fav,
+                    })),
                 }
                 : {} });
         return this.prisma.game.update({ where: { id }, data });

@@ -1,5 +1,3 @@
-import { Genre } from 'src/genres/entities/genre.entity';
-import { ConnectProfileDto } from 'src/profiles/dto/connect-profile.dto';
 export declare class Game {
     title: string;
     cover: string;
@@ -8,6 +6,6 @@ export declare class Game {
     imdb: number;
     trailer?: string;
     gameplay?: string;
-    genres?: Genre;
-    favorites?: ConnectProfileDto;
+    genres?: string[];
+    favorites?: number[];
 }

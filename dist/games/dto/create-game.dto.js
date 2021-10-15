@@ -10,10 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateGameDto = void 0;
-const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const create_genre_dto_1 = require("../../genres/dto/create-genre.dto");
-const connect_profile_dto_1 = require("../../profiles/dto/connect-profile.dto");
 const game_entity_1 = require("../entities/game.entity");
 class CreateGameDto extends game_entity_1.Game {
 }
@@ -53,16 +51,16 @@ __decorate([
     __metadata("design:type", String)
 ], CreateGameDto.prototype, "gameplay", void 0);
 __decorate([
-    (0, class_validator_1.ValidateNested)({ each: true }),
-    (0, class_transformer_1.Type)(() => create_genre_dto_1.CreateGenreDto),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", create_genre_dto_1.CreateGenreDto)
+    (0, class_validator_1.IsInt)({ each: true }),
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
 ], CreateGameDto.prototype, "genres", void 0);
 __decorate([
-    (0, class_validator_1.ValidateNested)({ each: true }),
-    (0, class_transformer_1.Type)(() => connect_profile_dto_1.ConnectProfileDto),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", connect_profile_dto_1.ConnectProfileDto)
+    (0, class_validator_1.IsInt)({ each: true }),
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
 ], CreateGameDto.prototype, "favorites", void 0);
 exports.CreateGameDto = CreateGameDto;
 //# sourceMappingURL=create-game.dto.js.map
