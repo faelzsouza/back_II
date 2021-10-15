@@ -12,13 +12,11 @@ export class GamesService {
       ...dto,
       genres: {
         create: dto.genres
-          ? [
-              {
-                genre: {
-                  connectOrCreate: { where: dto.genres, create: dto.genres },
-                },
+          ? dto.genres.map((genre) => ({
+              genre: {
+                connect: { name: genre },
               },
-            ]
+            }))
           : [],
       },
       favorites: {},
@@ -50,18 +48,18 @@ export class GamesService {
       ...dto,
       genres: {
         create: dto.genres
-          ? [
-              {
-                genre: {
-                  connectOrCreate: { where: dto.genres, create: dto.genres },
-                },
+          ? dto.genres.map((genre) => ({
+              genre: {
+                connect: { name: genre },
               },
-            ]
+            }))
           : [],
       },
       favorites: dto.favorites
         ? {
-            create: dto.favorites,
+            create: dto.favorites.map((fav) => ({
+              profileId: fav,
+            })),
           }
         : {},
     };
