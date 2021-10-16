@@ -35,9 +35,4 @@ export class CreateGameDto extends Game {
     @IsInt({each: true})
     @IsArray()
     genres?: string[]
-
-    @IsOptional()
-    @IsInt({each: true})
-    @IsArray()
-    favorites?: number[]
 }
