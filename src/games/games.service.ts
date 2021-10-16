@@ -44,6 +44,8 @@ export class GamesService {
   }
 
   async update(id: number, dto: UpdateGameDto) {
+    const deleteFavs = dto.deleteFavorites || undefined;
+    delete dto.deleteFavorites;
     const data: Prisma.GameUpdateInput = {
       ...dto,
       genres: {
@@ -55,13 +57,24 @@ export class GamesService {
             }))
           : [],
       },
-      favorites: dto.favorites
-        ? {
-            create: dto.favorites.map((fav) => ({
-              profileId: fav,
-            })),
-          }
-        : {},
+      favorites:
+        dto.favorites || deleteFavs
+          ? {
+              create: dto.favorites
+                ? dto.favorites.map((fav) => ({
+                    profileId: fav,
+                  }))
+                : [],
+              delete: deleteFavs
+                ? deleteFavs.map((fav) => ({
+                    profileId_gameId: {
+                      gameId: id,
+                      profileId: fav,
+                    },
+                  }))
+                : [],
+            }
+          : {},
     };
     //`This action updates a #${id} game`;
     return this.prisma.game.update({ where: { id }, data });
