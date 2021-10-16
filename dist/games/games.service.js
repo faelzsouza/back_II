@@ -44,10 +44,7 @@ let GamesService = class GamesService {
     }
     async update(id, dto) {
         const deleteFavs = dto.deleteFavorites || undefined;
-        console.log(deleteFavs);
-        console.log(dto);
         delete dto.deleteFavorites;
-        console.log(dto);
         const data = Object.assign(Object.assign({}, dto), { genres: {
                 create: dto.genres
                     ? dto.genres.map((genre) => ({
@@ -58,18 +55,22 @@ let GamesService = class GamesService {
                     : [],
             }, favorites: dto.favorites || deleteFavs
                 ? {
-                    create: dto.favorites ? dto.favorites.map((fav) => ({
-                        profileId: fav
-                    })) : [],
-                    delete: deleteFavs ? deleteFavs.map(fav => ({
-                        profileId_gameId: {
-                            gameId: id,
-                            profileId: fav
-                        }
-                    })) : []
+                    create: dto.favorites
+                        ? dto.favorites.map((fav) => ({
+                            profileId: fav,
+                        }))
+                        : [],
+                    delete: deleteFavs
+                        ? deleteFavs.map((fav) => ({
+                            profileId_gameId: {
+                                gameId: id,
+                                profileId: fav,
+                            },
+                        }))
+                        : [],
                 }
                 : {} });
-        console.log(data);
+        return this.prisma.game.update({ where: { id }, data });
     }
     async remove(id) {
         return this.prisma.game.delete({ where: { id } });
