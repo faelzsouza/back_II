@@ -8,4 +8,5 @@ export declare class Game {
     gameplay?: string;
     genres?: string[];
     favorites?: number[];
+    deleteFavorites?: number[];
 }

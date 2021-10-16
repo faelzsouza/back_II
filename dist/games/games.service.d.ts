@@ -15,6 +15,6 @@ export declare class GamesService {
         })[];
     })[]>;
     findOne(id: number): Promise<import(".prisma/client").Game>;
-    update(id: number, dto: UpdateGameDto): Promise<import(".prisma/client").Game>;
+    update(id: number, dto: UpdateGameDto): Promise<void>;
     remove(id: number): Promise<import(".prisma/client").Game>;
 }

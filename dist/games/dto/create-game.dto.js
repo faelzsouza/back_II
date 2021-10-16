@@ -56,11 +56,5 @@ __decorate([
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
 ], CreateGameDto.prototype, "genres", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsInt)({ each: true }),
-    (0, class_validator_1.IsArray)(),
-    __metadata("design:type", Array)
-], CreateGameDto.prototype, "favorites", void 0);
 exports.CreateGameDto = CreateGameDto;
 //# sourceMappingURL=create-game.dto.js.map

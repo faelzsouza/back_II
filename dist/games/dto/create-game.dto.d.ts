@@ -8,5 +8,4 @@ export declare class CreateGameDto extends Game {
     trailer?: string | null;
     gameplay?: string | null;
     genres?: string[];
-    favorites?: number[];
 }
