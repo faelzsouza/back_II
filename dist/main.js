@@ -6,7 +6,7 @@ const app_module_1 = require("./app.module");
 const unauthorized_interceptor_1 = require("./interceptors/unauthorized.interceptor");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
-        cors: { origin: 'http://localhost:3001' },
+        cors: { origin: ['http://localhost:3001', 'https://xboxalike.herokuapp.com/'] },
     });
     app.useGlobalPipes(new common_1.ValidationPipe({
         transform: true,
