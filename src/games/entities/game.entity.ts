@@ -1,5 +1,3 @@
-import { Genre } from 'src/genres/entities/genre.entity';
-
 export class Game{
     title: string;
     cover: string;
