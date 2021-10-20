@@ -14,16 +14,18 @@ export class UsersService {
     const data: Prisma.UserCreateInput = {
       ...dto,
       password: await bcrypt.hash(dto.password, 10),
-      profiles: dto.profiles ? {
-        create: dto.profiles
-      } : {}
-    }
+      profiles: dto.profiles
+        ? {
+            create: dto.profiles,
+          }
+        : {},
+    };
     const createdUser = await this.prisma.user.create({ data });
 
     return {
       ...createdUser,
-      password: undefined
-    }
+      password: undefined,
+    };
   }
 
   findAll() {
@@ -44,19 +46,27 @@ export class UsersService {
     // `This action returns a #${id} user`;
     return this.prisma.user.findUnique({
       where: { email },
-      include: { profiles: true },
       rejectOnNotFound: true,
     });
   }
-  
+
+  async getUserIdByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: { email },
+      rejectOnNotFound: true,
+    });
+  }
+
   async update(id: number, dto: UpdateUserDto) {
     const data: Prisma.UserUpdateInput = {
       ...dto,
       password: await bcrypt.hash(dto.password, 10),
-      profiles: dto.profiles ? {
-        create: dto.profiles
-      } : {}
-    }
+      profiles: dto.profiles
+        ? {
+            create: dto.profiles,
+          }
+        : {},
+    };
     return this.prisma.user.update({ where: { id }, data });
   }
 
