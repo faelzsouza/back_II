@@ -28,7 +28,8 @@ let AuthService = class AuthService {
             username: user.email,
         };
         return {
-            accessToken: this.jwtService.sign(payload)
+            accessToken: this.jwtService.sign(payload),
+            userId: user.id
         };
     }
     async validateUser(email, password) {

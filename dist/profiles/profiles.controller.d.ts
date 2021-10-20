@@ -9,6 +9,7 @@ export declare class ProfilesController {
     findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").Profile & {
         favGames: import(".prisma/client").GamesOnProfiles[];
     })[]>;
+    findAllByUserId(userId: string): import(".prisma/client").PrismaPromise<import(".prisma/client").Profile[]>;
     findOne(id: string): Promise<import(".prisma/client").Profile & {
         favGames: import(".prisma/client").GamesOnProfiles[];
     }>;

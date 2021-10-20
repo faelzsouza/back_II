@@ -4,5 +4,4 @@ exports.UserToken = void 0;
 class UserToken {
 }
 exports.UserToken = UserToken;
-;
 //# sourceMappingURL=user-token.dto.js.map

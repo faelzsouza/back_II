@@ -30,6 +30,9 @@ let ProfilesController = class ProfilesController {
     findAll() {
         return this.profilesService.findAll();
     }
+    findAllByUserId(userId) {
+        return this.profilesService.findAllByUserId(+userId);
+    }
     findOne(id) {
         return this.profilesService.findOne(+id).catch((err) => this.notFound(id));
     }
@@ -55,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ProfilesController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('/byUserId/:userId'),
+    __param(0, (0, common_1.Param)('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProfilesController.prototype, "findAllByUserId", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

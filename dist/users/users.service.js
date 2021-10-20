@@ -18,9 +18,11 @@ let UsersService = class UsersService {
         this.prisma = prisma;
     }
     async create(dto) {
-        const data = Object.assign(Object.assign({}, dto), { password: await bcrypt.hash(dto.password, 10), profiles: dto.profiles ? {
-                create: dto.profiles
-            } : {} });
+        const data = Object.assign(Object.assign({}, dto), { password: await bcrypt.hash(dto.password, 10), profiles: dto.profiles
+                ? {
+                    create: dto.profiles,
+                }
+                : {} });
         const createdUser = await this.prisma.user.create({ data });
         return Object.assign(Object.assign({}, createdUser), { password: undefined });
     }
@@ -37,14 +39,21 @@ let UsersService = class UsersService {
     async findByEmail(email) {
         return this.prisma.user.findUnique({
             where: { email },
-            include: { profiles: true },
+            rejectOnNotFound: true,
+        });
+    }
+    async getUserIdByEmail(email) {
+        return this.prisma.user.findUnique({
+            where: { email },
             rejectOnNotFound: true,
         });
     }
     async update(id, dto) {
-        const data = Object.assign(Object.assign({}, dto), { password: await bcrypt.hash(dto.password, 10), profiles: dto.profiles ? {
-                create: dto.profiles
-            } : {} });
+        const data = Object.assign(Object.assign({}, dto), { password: await bcrypt.hash(dto.password, 10), profiles: dto.profiles
+                ? {
+                    create: dto.profiles,
+                }
+                : {} });
         return this.prisma.user.update({ where: { id }, data });
     }
     async remove(id) {

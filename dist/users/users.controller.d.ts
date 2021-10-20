@@ -16,6 +16,7 @@ export declare class UsersController {
     findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").User & {
         profiles: import(".prisma/client").Profile[];
     })[]>;
+    getUserIdByEmail(email: string): Promise<import(".prisma/client").User>;
     findOne(id: string): Promise<import(".prisma/client").User & {
         profiles: import(".prisma/client").Profile[];
     }>;

@@ -22,6 +22,9 @@ let ProfilesService = class ProfilesService {
     findAll() {
         return this.prisma.profile.findMany({ include: { favGames: true } });
     }
+    findAllByUserId(userId) {
+        return this.prisma.profile.findMany({ where: { userId } });
+    }
     async findOne(id) {
         return this.prisma.profile.findUnique({
             where: { id },

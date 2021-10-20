@@ -18,9 +18,8 @@ export declare class UsersService {
     findById(id: number): Promise<import(".prisma/client").User & {
         profiles: import(".prisma/client").Profile[];
     }>;
-    findByEmail(email: string): Promise<import(".prisma/client").User & {
-        profiles: import(".prisma/client").Profile[];
-    }>;
+    findByEmail(email: string): Promise<import(".prisma/client").User>;
+    getUserIdByEmail(email: string): Promise<import(".prisma/client").User>;
     update(id: number, dto: UpdateUserDto): Promise<import(".prisma/client").User>;
     remove(id: number): Promise<import(".prisma/client").User>;
 }
