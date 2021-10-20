@@ -16,6 +16,10 @@ export class ProfilesService {
     return this.prisma.profile.findMany({ include: { favGames: true } });
   }
 
+  findAllByUserId(userId: number) {
+    return this.prisma.profile.findMany({ where: { userId } });
+  }
+
   async findOne(id: number) {
     //`This action returns a #${id} profile`;
     return this.prisma.profile.findUnique({

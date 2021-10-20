@@ -32,6 +32,11 @@ export class ProfilesController {
     return this.profilesService.findAll();
   }
 
+  @Get('/byUserId/:userId')
+  findAllByUserId(@Param('userId') userId: string) {
+    return this.profilesService.findAllByUserId(+userId)
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.profilesService.findOne(+id).catch((err) => this.notFound(id));
