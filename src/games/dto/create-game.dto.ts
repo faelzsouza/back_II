@@ -32,7 +32,7 @@ export class CreateGameDto extends Game {
     gameplay?: string | null
 
     @IsOptional()
-    @IsInt({each: true})
+    @IsString({each: true})
     @IsArray()
     genres?: string[]
 }
