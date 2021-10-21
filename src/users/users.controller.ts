@@ -23,6 +23,7 @@ export class UsersController {
     throw new HttpException(`The user with #${id} was not found`, 404);
   };
 
+  @Public()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
