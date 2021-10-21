@@ -5,7 +5,7 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    cors: { origin: ['http://localhost:3001', 'https://xboxalike.herokuapp.com/'] },
+    cors: { origin: ['http://localhost:3001', 'https://xboxalike.herokuapp.com'] },
   });
   app.useGlobalPipes(
     new ValidationPipe({
