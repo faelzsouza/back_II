@@ -24,7 +24,7 @@ export class ProfilesService {
     //`This action returns a #${id} profile`;
     return this.prisma.profile.findUnique({
       where: { id },
-      include: { favGames: true },
+      include: { favGames: { select: { game: true } } },
     });
   }
 
