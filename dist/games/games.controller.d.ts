@@ -14,7 +14,11 @@ export declare class GamesController {
             genre: import(".prisma/client").Genre;
         })[];
     })[]>;
-    findOne(id: string): Promise<import(".prisma/client").Game>;
+    findOne(id: string): Promise<import(".prisma/client").Game & {
+        genres: (import(".prisma/client").GenresOnGames & {
+            genre: import(".prisma/client").Genre;
+        })[];
+    }>;
     update(id: string, updateGameDto: UpdateGameDto): Promise<import(".prisma/client").Game>;
     remove(id: string): void;
 }

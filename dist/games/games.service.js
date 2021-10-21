@@ -39,6 +39,7 @@ let GamesService = class GamesService {
     async findOne(id) {
         return this.prisma.game.findUnique({
             where: { id },
+            include: { genres: { include: { genre: true } } },
             rejectOnNotFound: true,
         });
     }

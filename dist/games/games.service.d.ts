@@ -14,7 +14,11 @@ export declare class GamesService {
             genre: import(".prisma/client").Genre;
         })[];
     })[]>;
-    findOne(id: number): Promise<import(".prisma/client").Game>;
+    findOne(id: number): Promise<import(".prisma/client").Game & {
+        genres: (import(".prisma/client").GenresOnGames & {
+            genre: import(".prisma/client").Genre;
+        })[];
+    }>;
     update(id: number, dto: UpdateGameDto): Promise<import(".prisma/client").Game>;
     remove(id: number): Promise<import(".prisma/client").Game>;
 }
