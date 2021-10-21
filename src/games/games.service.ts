@@ -39,6 +39,7 @@ export class GamesService {
     //`This action returns a #${id} game`;
     return this.prisma.game.findUnique({
       where: { id },
+      include: { genres: { include: { genre: true } } },
       rejectOnNotFound: true,
     });
   }
