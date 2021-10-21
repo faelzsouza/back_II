@@ -11,7 +11,9 @@ export declare class ProfilesController {
     })[]>;
     findAllByUserId(userId: string): import(".prisma/client").PrismaPromise<import(".prisma/client").Profile[]>;
     findOne(id: string): Promise<import(".prisma/client").Profile & {
-        favGames: import(".prisma/client").GamesOnProfiles[];
+        favGames: {
+            game: import(".prisma/client").Game;
+        }[];
     }>;
     update(id: string, updateProfileDto: UpdateProfileDto): Promise<import(".prisma/client").Profile>;
     remove(id: string): void;

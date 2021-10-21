@@ -28,7 +28,7 @@ let ProfilesService = class ProfilesService {
     async findOne(id) {
         return this.prisma.profile.findUnique({
             where: { id },
-            include: { favGames: true },
+            include: { favGames: { select: { game: true } } },
         });
     }
     async update(id, data) {

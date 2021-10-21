@@ -10,7 +10,9 @@ export declare class ProfilesService {
     })[]>;
     findAllByUserId(userId: number): import(".prisma/client").PrismaPromise<import(".prisma/client").Profile[]>;
     findOne(id: number): Promise<import(".prisma/client").Profile & {
-        favGames: import(".prisma/client").GamesOnProfiles[];
+        favGames: {
+            game: import(".prisma/client").Game;
+        }[];
     }>;
     update(id: number, data: UpdateProfileDto): Promise<import(".prisma/client").Profile>;
     remove(id: number): Promise<import(".prisma/client").Profile>;
