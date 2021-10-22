@@ -32,6 +32,7 @@ export class GamesService {
         favorites: { include: { profile: true } },
         genres: { include: { genre: true } },
       },
+      orderBy: { title: 'asc' },
     });
   }
 
